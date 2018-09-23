@@ -1,8 +1,31 @@
-### 瀑布图
+# 瀑布图
 
 #### 示例
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/tecfxdg9/23/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-waterfall"></vuep>
+
+<script v-pre type="text/x-template" id="simple-waterfall">
+<template>
+  <ve-waterfall :data="chartData"></ve-waterfall>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['活动', '时间'],
+          rows: [
+            { '活动': '吃饭', '时间': 4 },
+            { '活动': '睡觉', '时间': 10 },
+            { '活动': '打豆豆', '时间': 5 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### 设置指标维度
 
@@ -14,19 +37,21 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['活动', '时间'],
-        rows: [
-          { '活动': '吃饭', '时间': 4 },
-          { '活动': '睡觉', '时间': 10 },
-          { '活动': '打豆豆', '时间': 5 }
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
         dimension: '活动',
         metrics: '时间'
+      }
+      return {
+        chartData: {
+          columns: ['活动', '时间'],
+          rows: [
+            { '活动': '吃饭', '时间': 4 },
+            { '活动': '睡觉', '时间': 10 },
+            { '活动': '打豆豆', '时间': 5 }
+          ]
+        }
       }
     }
   }
@@ -43,18 +68,20 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['活动', '时间'],
-        rows: [
-          { '活动': '吃饭', '时间': 0.1 },
-          { '活动': '睡觉', '时间': 0.2 },
-          { '活动': '打豆豆', '时间': 0.3 }
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
-        "dataType": "percent"
+        dataType: 'percent'
+      }
+      return {
+        chartData: {
+          columns: ['活动', '时间'],
+          rows: [
+            { '活动': '吃饭', '时间': 0.1 },
+            { '活动': '睡觉', '时间': 0.2 },
+            { '活动': '打豆豆', '时间': 0.3 }
+          ]
+        }
       }
     }
   }
@@ -71,19 +98,21 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['活动', '时间'],
-        rows: [
-          { '活动': '吃饭', '时间': 0.1 },
-          { '活动': '睡觉', '时间': 0.2 },
-          { '活动': '打豆豆', '时间': 0.3 }
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
         labelMap: {
           '时间': 'time'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['活动', '时间'],
+          rows: [
+            { '活动': '吃饭', '时间': 0.1 },
+            { '活动': '睡觉', '时间': 0.2 },
+            { '活动': '打豆豆', '时间': 0.3 }
+          ]
         }
       }
     }
@@ -101,20 +130,22 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['活动', '时间'],
-        rows: [
-          { '活动': '吃饭', '时间': 4 },
-          { '活动': '睡觉', '时间': 10 },
-          { '活动': '打豆豆', '时间': 5 }
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
         totalNum: 24,
         totalName: '总时间',
         remainName: '剩余时间'
+      }
+      return {
+        chartData: {
+          columns: ['活动', '时间'],
+          rows: [
+            { '活动': '吃饭', '时间': 4 },
+            { '活动': '睡觉', '时间': 10 },
+            { '活动': '打豆豆', '时间': 5 }
+          ]
+        }
       }
     }
   }
@@ -125,10 +156,10 @@
 
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
-| dimension | 维度 | String | 默认columns第一项为维度 |
-| metrics | 指标 | String | 默认columns第二项为指标 |
-| dataType | 数据类型 | String | 可选值: KMB, normal, percent |
-| totalNum | 总量 | Number | 默认瀑布图总量为所有数据的和 |
-| totalName | 总量的显示文案 | String | 默认显示总计 |
-| remainName | 剩余的显示文案 | String | 默认显示其他 |
-| digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
+| dimension | 维度 | string | 默认columns第一项为维度 |
+| metrics | 指标 | string | 默认columns第二项为指标 |
+| dataType | 数据类型 | string | 可选值: KMB, normal, percent |
+| totalNum | 总量 | number | 默认瀑布图总量为所有数据的和 |
+| totalName | 总量的显示文案 | string | 默认显示总计 |
+| remainName | 剩余的显示文案 | string | 默认显示其他 |
+| digit | 设置数据类型为percent时保留的位数 | number | 默认为2 |

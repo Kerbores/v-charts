@@ -1,13 +1,18 @@
 import { getBmap } from '../../utils'
 
-export const bmap = (_, __, settings) => {
+export const bmap = (_, __, settings, extra) => {
   const {
     key,
     v,
-    bmap
+    bmap,
+    useOuterMap
   } = settings
-  if (!key) console.warn('settings.key must be a string.')
-
+  const { _once } = extra
+  const registerSign = 'bmap_register'
+  if (!key && !useOuterMap) console.warn('settings.key must be a string.')
+  if (_once[registerSign]) return {}
+  _once[registerSign] = true
+  if (useOuterMap) return { bmap }
   return getBmap(key, v).then(_ => {
     return { bmap }
   })

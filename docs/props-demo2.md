@@ -1,4 +1,4 @@
-### 属性配置示例（2）
+# 属性配置示例（2）
 
 #### 设置extend配置项
 
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       this.chartExtend = {
         series (v) {
@@ -35,6 +35,12 @@
           tooltip: {
             trigger: 'none'
           }
+        }
+        等同于
+        this.chartExtend = {
+          'series.0.barWidth': 10,
+          'series.1.barWidth': 10,
+          'tooltip.trigger': 'none'
         }
       */
       return {
@@ -68,7 +74,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {
@@ -109,7 +115,7 @@
 <script>
   // 使用loading属性前先引入css
   // import 'v-charts/lib/style.css'
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {
@@ -145,7 +151,7 @@
 <script>
   // 使用data-empty属性前先引入css
   // import 'v-charts/lib/style.css'
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {
@@ -188,7 +194,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {

@@ -1,4 +1,3 @@
-import echarts from '../../echarts-base'
 import { bar, histogram } from '../bar/main'
 import { line } from '../line/main'
 import { pie, ring } from '../pie/main'
@@ -6,10 +5,9 @@ import { funnel } from '../funnel/main'
 import { radar } from '../radar/main'
 import { waterfall } from '../waterfall/main'
 import Core from '../../core'
-export default {
+export default Object.assign({}, Core, {
   name: 'VeChart',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartLib = {
       bar,
       histogram,
@@ -21,6 +19,6 @@ export default {
       waterfall
     }
     this.chartHandler = this.chartLib[this.settings.type]
-    this.echartsLib = echarts
+    return {}
   }
-}
+})

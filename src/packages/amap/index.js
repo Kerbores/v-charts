@@ -1,12 +1,10 @@
-import echarts from '../../echarts-base'
 import 'echarts-amap'
 import { amap } from './main'
 import Core from '../../core'
-export default {
+export default Object.assign({}, Core, {
   name: 'VeAmap',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartHandler = amap
-    this.echartsLib = echarts
+    return {}
   }
-}
+})

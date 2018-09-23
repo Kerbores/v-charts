@@ -1,4 +1,4 @@
-### 常见问题示例
+# 常见问题示例
 
 #### 容器的初始宽度未知
 
@@ -8,7 +8,7 @@
 <vuep template="#container-width"></vuep>
 
 <script v-pre type="text/x-template" id="container-width">
-<template>
+<template> <!-- [_ https://cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/index.js,https://cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/theme-default/index.css _] -->
   <el-tabs type="border-card" v-model="activeName">
     <el-tab-pane label="用户管理" name="1"> <!-- name 中的数字对应chart的ref -->
       <ve-line :data="chartData" ref="chart1"></ve-line>
@@ -26,23 +26,21 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
-        activeName: '1'
-      }
-    },
-    created: function () {
-      this.chartData = {
-        columns: ['日期', '销售额-1季度'],
-        rows: [
-          { '日期': '1月1日', '销售额-1季度': 1523 },
-          { '日期': '1月2日', '销售额-1季度': 1223 },
-          { '日期': '1月3日', '销售额-1季度': 2123 },
-          { '日期': '1月4日', '销售额-1季度': 4123 },
-          { '日期': '1月5日', '销售额-1季度': 3123 },
-          { '日期': '1月6日', '销售额-1季度': 7123 }
-        ]
+        activeName: '1',
+        chartData: {
+          columns: ['日期', '销售额-1季度'],
+          rows: [
+            { '日期': '1月1日', '销售额-1季度': 1523 },
+            { '日期': '1月2日', '销售额-1季度': 1223 },
+            { '日期': '1月3日', '销售额-1季度': 2123 },
+            { '日期': '1月4日', '销售额-1季度': 4123 },
+            { '日期': '1月5日', '销售额-1季度': 3123 },
+            { '日期': '1月6日', '销售额-1季度': 7123 }
+          ]
+        }
       }
     },
     watch: {
@@ -69,21 +67,23 @@ v-charts处理数据类型时默认保留两位有效数字，但是当数字较
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', 'value'],
-        rows: [
-          { '日期': '1月1日', 'value': 0.00001 },
-          { '日期': '1月2日', 'value': 0.00002 },
-          { '日期': '1月3日', 'value': 0.00003 },
-          { '日期': '1月4日', 'value': 0.00004 },
-          { '日期': '1月5日', 'value': 0.00005 },
-          { '日期': '1月6日', 'value': 0.00006 }
-        ]
-      },
+  export default {
+    data () {
       this.chartSettings = {
         yAxisType: ['percent']
+      }
+      return {
+        chartData: {
+          columns: ['日期', 'value'],
+          rows: [
+            { '日期': '1月1日', 'value': 0.00001 },
+            { '日期': '1月2日', 'value': 0.00002 },
+            { '日期': '1月3日', 'value': 0.00003 },
+            { '日期': '1月4日', 'value': 0.00004 },
+            { '日期': '1月5日', 'value': 0.00005 },
+            { '日期': '1月6日', 'value': 0.00006 }
+          ]
+        }
       }
     }
   }
@@ -101,22 +101,24 @@ v-charts处理数据类型时默认保留两位有效数字，但是当数字较
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', 'value'],
-        rows: [
-          { '日期': '1月1日', 'value': 0.00001 },
-          { '日期': '1月2日', 'value': 0.00002 },
-          { '日期': '1月3日', 'value': 0.00003 },
-          { '日期': '1月4日', 'value': 0.00004 },
-          { '日期': '1月5日', 'value': 0.00005 },
-          { '日期': '1月6日', 'value': 0.00006 }
-        ]
-      },
+  export default {
+    data () {
       this.chartSettings = {
         yAxisType: ['percent'],
         digit: 3
+      }
+      return {
+        chartData: {
+          columns: ['日期', 'value'],
+          rows: [
+            { '日期': '1月1日', 'value': 0.00001 },
+            { '日期': '1月2日', 'value': 0.00002 },
+            { '日期': '1月3日', 'value': 0.00003 },
+            { '日期': '1月4日', 'value': 0.00004 },
+            { '日期': '1月5日', 'value': 0.00005 },
+            { '日期': '1月6日', 'value': 0.00006 }
+          ]
+        }
       }
     }
   }

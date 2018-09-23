@@ -1,5 +1,5 @@
-import { itemPoint } from '../../echarts-base'
 import { getFormated, getStackMap } from '../../utils'
+import { isArray } from 'utils-lite'
 
 function getLineXAxis (args) {
   const { dimension, rows, xAxisName, axisVisible, xAxisType } = args
@@ -7,7 +7,6 @@ function getLineXAxis (args) {
     type: xAxisType,
     nameLocation: 'middle',
     nameGap: 22,
-    boundaryGap: false,
     name: xAxisName[index] || '',
     axisTick: { show: true, lineStyle: { color: '#eee' } },
     data: rows.map(row => row[item]),
@@ -28,7 +27,6 @@ function getLineSeries (args) {
     itemStyle,
     lineStyle,
     areaStyle,
-    xAxisType,
     dimension
   } = args
   let series = []
@@ -43,10 +41,7 @@ function getLineSeries (args) {
       } else if (nullAddZero) {
         value = 0
       }
-      const dataItem = xAxisType === 'category'
-        ? value
-        : [row[dimension[0]], value]
-      dataTemp[item].push(dataItem)
+      dataTemp[item].push([row[dimension[0]], value])
     })
   })
   metrics.forEach(item => {
@@ -70,7 +65,7 @@ function getLineSeries (args) {
 
     series.push(seriesItem)
   })
-  return series.length ? series : false
+  return series
 }
 
 function getLineYAxis (args) {
@@ -112,7 +107,7 @@ function getLineYAxis (args) {
 }
 
 function getLineTooltip (args) {
-  const { axisSite, yAxisType, digit, labelMap, xAxisType, tooltipFormatter } = args
+  const { axisSite, yAxisType, digit, labelMap, tooltipFormatter } = args
   const rightItems = axisSite.right || []
   const rightList = labelMap
     ? rightItems.map(item => {
@@ -129,17 +124,13 @@ function getLineTooltip (args) {
       const { name, axisValueLabel } = items[0]
       const title = name || axisValueLabel
       tpl.push(`${title}<br>`)
-      items.forEach(item => {
+      items.forEach(({ seriesName, data, marker }) => {
         let showData = null
-        const type = ~rightList.indexOf(item.seriesName)
-          ? yAxisType[1]
-          : yAxisType[0]
-        const data = xAxisType === 'category'
-          ? item.data
-          : item.data[1]
-        showData = getFormated(data, type, digit)
-        tpl.push(itemPoint(item.color))
-        tpl.push(`${item.seriesName}: ${showData}`)
+        const type = ~rightList.indexOf(seriesName) ? yAxisType[1] : yAxisType[0]
+        const itemData = isArray(data) ? data[1] : data
+        showData = getFormated(itemData, type, digit)
+        tpl.push(marker)
+        tpl.push(`${seriesName}: ${showData}`)
         tpl.push('<br>')
       })
       return tpl.join('')
@@ -162,6 +153,8 @@ function getLegend (args) {
 }
 
 export const line = (columns, rows, settings, extra) => {
+  rows = isArray(rows) ? rows : []
+  columns = isArray(columns) ? columns : []
   const {
     axisSite = {},
     yAxisType = ['normal', 'normal'],
@@ -237,8 +230,6 @@ export const line = (columns, rows, settings, extra) => {
     xAxisType,
     dimension
   })
-  if (!xAxis || !series) return false
-
   let options = { legend, xAxis, series, yAxis, tooltip }
   return options
 }

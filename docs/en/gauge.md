@@ -1,6 +1,29 @@
-### Gauge
+# Gauge
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/oc7j28jo/1/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+#### Example
+
+<vuep template="#simple-gauge"></vuep>
+
+<script v-pre type="text/x-template" id="simple-gauge">
+<template>
+  <ve-gauge :data="chartData"></ve-gauge>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'speed', value: 80, a: 1, b: 2 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set dimension and metrics
 
@@ -12,17 +35,19 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['a', 'b', 'type', 'value'],
-        rows: [
-          { type: 'speed', value: 80, a: 1, b: 2 }
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
         dimension: 'type',
         metrics: 'value'
+      }
+      return {
+        chartData: {
+          columns: ['a', 'b', 'type', 'value'],
+          rows: [
+            { type: 'speed', value: 80, a: 1, b: 2 }
+          ]
+        }
       }
     }
   }
@@ -39,14 +64,8 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: 'rate', value: 0.8 }
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
         dataType: {
           'rate': 'percent'
@@ -56,6 +75,14 @@
             min: 0,
             max: 1
           }
+        }
+      }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'rate', value: 0.8 }
+          ]
         }
       }
     }
@@ -73,20 +100,22 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: 'speed', value: 60 }
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
         labelMap: {
           'speed': 's'
         },
         dataName: {
           'speed': 'km/h'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'speed', value: 60 }
+          ]
         }
       }
     }
@@ -108,16 +137,8 @@
 </template>
 
 <script>
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: 'speed', value: 60 },
-          { type: 'rotateSpeed', value: 80 },
-          { type: 'oilVolume', value: 6000 },
-        ]
-      }
+  export default {
+    data () {
       this.chartSettings = {
         dataName: {
           'speed': 'km/h',
@@ -320,6 +341,16 @@
           }
         }
       }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'speed', value: 60 },
+            { type: 'rotateSpeed', value: 80 },
+            { type: 'oilVolume', value: 6000 },
+          ]
+        }
+      }
     }
   }
 </script>
@@ -330,12 +361,12 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | 默认 columns[0] |
-| metrics | metrics of chart | String | 默认 columns[1] |
-| dataType | data type of metrics | Object | - |
-| digit | digit of percent type data | Number | default `2` |
-| labelMap | metrics alias | Object | - |
-| seriesMap | series of each gauge | Object | - |
-| dataName | unit displayed on the dial | Object | - |
+| dimension | dimension of chart | string | 默认 columns[0] |
+| metrics | metrics of chart | string | 默认 columns[1] |
+| dataType | data type of metrics | object | - |
+| digit | digit of percent type data | number | default `2` |
+| labelMap | metrics alias | object | - |
+| seriesMap | series of each gauge | object | - |
+| dataName | unit displayed on the dial | object | - |
 
 > Remark: by set `seriesMap`, you can set style for every gauge, content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge).

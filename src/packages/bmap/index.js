@@ -1,12 +1,10 @@
-import echarts from '../../echarts-base'
 import 'echarts/extension/bmap/bmap'
 import { bmap } from './main'
 import Core from '../../core'
-export default {
+export default Object.assign({}, Core, {
   name: 'VeBmap',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartHandler = bmap
-    this.echartsLib = echarts
+    return {}
   }
-}
+})

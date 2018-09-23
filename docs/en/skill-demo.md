@@ -1,4 +1,4 @@
-### FAQ
+# FAQ
 
 #### The initial width of the container is unknown
 
@@ -8,7 +8,7 @@ call the echarts resize function.
 <vuep template="#container-width"></vuep>
 
 <script v-pre type="text/x-template" id="container-width">
-<template>
+<template>  <!-- [_ https://cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/index.js,https://cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/theme-default/index.css _] -->
   <el-tabs type="border-card" v-model="activeName">
     <el-tab-pane label="用户管理" name="1"> <!-- name 中的数字对应chart的ref -->
       <ve-line :data="chartData" ref="chart1"></ve-line>
@@ -26,7 +26,7 @@ call the echarts resize function.
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
         activeName: '1'
@@ -69,7 +69,7 @@ By default, v-charts retain two significant digits when working with data types,
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'value'],
@@ -101,7 +101,7 @@ Each chart has digit configuration items, set this attribute, so the smaller the
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'value'],

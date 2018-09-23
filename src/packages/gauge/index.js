@@ -1,13 +1,10 @@
-import echarts from '../../echarts-base'
 import 'echarts/lib/chart/gauge'
 import { gauge } from './main'
 import Core from '../../core'
-
-export default {
+export default Object.assign({}, Core, {
   name: 'VeGauge',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartHandler = gauge
-    this.echartsLib = echarts
+    return {}
   }
-}
+})

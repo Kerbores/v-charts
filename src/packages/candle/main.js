@@ -1,5 +1,6 @@
-import { itemPoint } from '../../echarts-base'
-import { isArray, getFormated } from '../../utils'
+import { itemPoint } from '../../constants'
+import { getFormated } from '../../utils'
+import { isArray } from 'utils-lite'
 
 const DEFAULT_MA = [5, 10, 20, 30]
 const DEFAULT_K_NAME = '日K'
@@ -43,8 +44,9 @@ function getCandleTooltip (args) {
         if (componentSubType === 'candlestick') {
           tpl.push('<br>')
           metrics.slice(0, 4).forEach((m, i) => {
+            const name = labelMap[m] != null ? labelMap[m] : m
             const val = getFormated(data[i + 1], dataType, digit)
-            tpl.push(`- ${m}: ${val}<br>`)
+            tpl.push(`- ${name}: ${val}<br>`)
           })
         } else if (componentSubType === 'line') {
           const val = getFormated(data, dataType, digit)
